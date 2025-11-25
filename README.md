@@ -13,7 +13,14 @@ pip install -e .
 ```python
 from sipnav import SipNavClient
 
-# Initialize the client with your Bearer token
+# Method 1: Initialize with username and password (recommended)
+client = SipNavClient(
+    username="your_username",
+    password="your_password",
+    platform_id=1  # Optional: for multi-platform users
+)
+
+# Method 2: Initialize with Bearer token
 client = SipNavClient(
     api_key="your_bearer_token_here",
     platform_id=1  # Optional: for multi-platform users
@@ -40,14 +47,32 @@ lrn_info = client.lrn.lookup("5125551212")
 
 ## Authentication
 
-First, obtain an access token by logging in:
+You can authenticate using either username/password or a bearer token:
 
+### Direct Authentication (Recommended)
 ```python
-# Login to get access token
-login_response = client.auth.login(username="your_username", password="your_password")
+# Client automatically handles authentication
+client = SipNavClient(
+    username="your_username",
+    password="your_password"
+)
+```
+
+### Using Bearer Token
+```python
+# If you already have a token
+client = SipNavClient(api_key="your_bearer_token")
+```
+
+### Manual Token Retrieval
+```python
+# Manually get the token
+temp_client = SipNavClient(api_key="temp")
+login_response = temp_client.auth.login(username="your_username", password="your_password")
 token = login_response["data"]["token"]
 
 # Use token for subsequent requests
+client = SipNavClient(api_key=token)
 client = SipNavClient(api_key=token)
 ```
 
@@ -267,6 +292,39 @@ Full API documentation is available at:
 For issues and questions:
 - Email: krice@sipnavigator.com
 - API Documentation: https://api.bluedragonnetwork.com/api/documentation
+
+## Versioning
+
+This project uses [Semantic Versioning](https://semver.org/) (SemVer). Versions are automatically managed using `setuptools_scm` based on git tags.
+
+**Current version:**
+```bash
+python -m setuptools_scm
+```
+
+**Check version in Python:**
+```python
+import sipnav
+print(sipnav.__version__)
+```
+
+**Creating a release:**
+```bash
+git tag v0.2.0  # New version tag
+git push origin v0.2.0
+```
+
+See [VERSIONING.md](VERSIONING.md) for detailed information about version management.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/new-feature`
+3. Commit your changes: `git commit -m "Add new feature"`
+4. Push to the branch: `git push origin feature/new-feature`
+5. Submit a pull request
+
+Please update [CHANGELOG.md](CHANGELOG.md) with your changes.
 
 ## License
 

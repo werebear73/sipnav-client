@@ -1,0 +1,43 @@
+/* Custom styles for SIPNAV documentation */
+
+:root {
+  --sipnav-primary: #3f51b5;
+  --sipnav-accent: #ff4081;
+}
+
+/* Custom admonition colors */
+.md-typeset .admonition.sipnav {
+  border-color: var(--sipnav-primary);
+}
+
+.md-typeset .admonition.sipnav > .admonition-title {
+  background-color: var(--sipnav-primary);
+}
+
+/* Code block enhancements */
+.md-typeset code {
+  font-size: 0.85em;
+}
+
+/* Table styling */
+.md-typeset table:not([class]) {
+  font-size: 0.9em;
+}
+
+/* Version badge */
+.md-header__version {
+  font-size: 0.8em;
+  padding: 0.2em 0.5em;
+  background-color: var(--sipnav-primary);
+  border-radius: 3px;
+}
+
+/* API reference styling */
+.doc-heading {
+  font-family: var(--md-code-font-family);
+}
+
+/* Improve spacing in navigation */
+.md-nav__item {
+  padding: 0.2em 0;
+}

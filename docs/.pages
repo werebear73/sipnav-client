@@ -1,0 +1,7 @@
+nav:
+  - index.md
+  - installation.md
+  - user-guide
+  - api-reference
+  - examples
+  - building-docs.md

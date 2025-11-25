@@ -1,0 +1,50 @@
+name: Sync Docs to Waretech Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+
+      - name: Checkout the Waretech Docs repository
+        uses: actions/checkout@v4
+        with:
+          repository: werebear73/waretech-docs
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          path: waretech-docs
+          ref: main
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Sync docs folder
+        run: |
+          mkdir -p waretech-docs/docs/customers/blue_dragon_network/international/software/testbed_scripts
+          rsync -av --delete docs/ waretech-docs/docs/customers/blue_dragon_network/international/software/testbed_scripts/
+
+      - name: Commit changes
+        working-directory: waretech-docs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/customers/blue_dragon_network/international/software/testbed_scripts
+          git commit -m "Sync testbed docs" || echo "No changes to commit"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          path: waretech-docs
+          commit-message: "Update INTL Testbed docs"
+          title: "Sync INTL Testbed docs"
+          body: "This PR contains the latest changes from the INTL Testbed repository."
+          branch: "sync/testbed-docs"
+          base: "main"

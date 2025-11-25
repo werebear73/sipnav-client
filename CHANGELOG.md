@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Username/password authentication support in SipNavClient constructor
+- Automatic bearer token retrieval via `/api/login` endpoint
+- MkDocs Material documentation site with awesome-pages plugin
+- Comprehensive documentation structure (user guides, API reference, examples)
+- GitHub repository integration
+- Enhanced .gitignore for Python and VS Code
+
+### Changed
+- Updated all documentation to show both authentication methods
+- Made `api_key` parameter optional when username/password provided
+
+## [0.1.0] - 2025-11-25
+
+### Added
 - Initial implementation of SIPNAV Python client library
 - Resource classes for major API endpoints:
   - Accounts management (list, get, create, update)
@@ -27,26 +41,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unit tests with pytest
 - Development tools setup (black, flake8, mypy)
 - Semantic versioning with setuptools_scm
-
-### Changed
-- N/A
-
-### Deprecated
-- N/A
-
-### Removed
-- N/A
-
-### Fixed
-- N/A
-
-### Security
-- N/A
-
-## [0.1.0] - TBD
-
-### Added
-- Initial release of SIPNAV Python client
 
 ---
 

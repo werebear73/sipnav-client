@@ -1,0 +1,5 @@
+title: User Guide
+nav:
+  - index.md
+  - quickstart.md
+  - authentication.md

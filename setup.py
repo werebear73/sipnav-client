@@ -47,5 +47,12 @@ setup(
             "mypy>=0.991",
             "types-requests>=2.28.0",
         ],
+        "docs": [
+            "mkdocs>=1.5.0",
+            "mkdocs-material>=9.4.0",
+            "mkdocstrings[python]>=0.24.0",
+            "pymdown-extensions>=10.5.0",
+            "mkdocs-awesome-pages-plugin>=2.9.0",
+        ],
     },
 )

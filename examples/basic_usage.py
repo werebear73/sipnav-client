@@ -1,20 +1,27 @@
 """Basic usage examples for the SIPNAV client library."""
 
+import os
 from sipnav import SipNavClient
 from sipnav.exceptions import SipNavException, AuthenticationError
 
-# Initialize the client with your API token
-# You get this token from the /api/login endpoint
-api_key = "your_bearer_token_here"
+# Method 1: Initialize with username and password (recommended)
+# The client will automatically obtain and use the bearer token
+# client = SipNavClient(
+#     username="your_username",
+#     password="your_password",
+#     platform_id=1  # Optional
+# )
+
+# Method 2: Initialize with bearer token
+# Set these as environment variables for better security
+api_key = os.getenv("SIPNAV_API_TOKEN", "your_bearer_token_here")
 platform_id = 1  # Optional: specify if you have multiple platforms
 
 client = SipNavClient(api_key=api_key, platform_id=platform_id)
 
 try:
-    # Example 1: Login to get a token (if you don't have one)
-    # login_response = client.auth.login(username="admin", password="password")
-    # token = login_response["data"]["token"]
-    # print(f"Access Token: {token}")
+    # Note: If using Method 1 (username/password), you don't need to manually login
+    # The client handles authentication automatically
     
     # Example 2: List accounts
     accounts = client.accounts.list(per_page=10)
