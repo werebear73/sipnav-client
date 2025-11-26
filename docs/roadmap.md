@@ -2,7 +2,7 @@
 
 This document outlines the planned features and improvements for the SIPNAV Python Client.
 
-## Version 0.3.0 (Q1 2025)
+## Version 0.3.0 (Q1 2026)
 
 ### Planned Features
 
@@ -27,7 +27,7 @@ This document outlines the planned features and improvements for the SIPNAV Pyth
 - [ ] Debug mode with verbose output
 - [ ] Webhook support for event notifications
 
-## Version 0.4.0 (Q2 2025)
+## Version 0.4.0 (Q2 2026)
 
 ### Advanced Features
 
@@ -50,7 +50,7 @@ This document outlines the planned features and improvements for the SIPNAV Pyth
 - [ ] Circuit breaker pattern for failing services
 - [ ] Error aggregation and reporting
 
-## Version 0.5.0 (Q3 2025)
+## Version 0.5.0 (Q3 2026)
 
 ### Enterprise Features
 
@@ -75,7 +75,7 @@ This document outlines the planned features and improvements for the SIPNAV Pyth
 - [ ] Troubleshooting guide
 - [ ] Performance tuning guide
 
-## Version 1.0.0 (Q4 2025)
+## Version 1.0.0 (Q4 2026)
 
 ### Production Ready
 
