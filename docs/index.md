@@ -116,10 +116,11 @@ client = SipNavClient(api_key=token)
 
 ## Support
 
-- **Email**: krice@sipnavigator.com
+- **Maintainer**: Sam Ware (samuel@waretech.services)
+- **Organization**: [Waretech Services](https://waretech.services)
+- **GitHub Issues**: [https://github.com/werebear73/sipnav-client/issues](https://github.com/werebear73/sipnav-client/issues)
 - **API Documentation**: [https://api.bluedragonnetwork.com/api/documentation](https://api.bluedragonnetwork.com/api/documentation)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/sipnav-client/issues)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/yourusername/sipnav-client/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/werebear73/sipnav-client/blob/master/LICENSE) file for details.

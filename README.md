@@ -290,8 +290,10 @@ Full API documentation is available at:
 ## Support
 
 For issues and questions:
-- Email: krice@sipnavigator.com
-- API Documentation: https://api.bluedragonnetwork.com/api/documentation
+- **Maintainer**: Sam Ware (samuel@waretech.services)
+- **Organization**: [Waretech Services](https://waretech.services)
+- **GitHub Issues**: [https://github.com/werebear73/sipnav-client/issues](https://github.com/werebear73/sipnav-client/issues)
+- **API Documentation**: https://api.bluedragonnetwork.com/api/documentation
 
 ## Versioning
 

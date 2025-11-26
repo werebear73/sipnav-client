@@ -121,7 +121,8 @@ Have a feature request? We'd love to hear from you!
 
 - **Submit an Issue**: [GitHub Issues](https://github.com/werebear73/sipnav-client/issues)
 - **Start a Discussion**: [GitHub Discussions](https://github.com/werebear73/sipnav-client/discussions)
-- **Email**: krice@sipnavigator.com
+- **Contact Maintainer**: Sam Ware (samuel@waretech.services)
+- **Organization**: [Waretech Services](https://waretech.services)
 
 ### How to Request a Feature
 
