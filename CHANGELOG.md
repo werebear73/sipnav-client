@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Error messages now show full context: `[API Message] | Details: [Info] | Request: [METHOD] [ENDPOINT]`
 - Separated timeout errors and connection errors for better debugging
 - Improved `APIError.__str__()` method for better error representation
+- Updated maintainer information to Sam Ware (samuel@waretech.services) - Waretech Services
+- Updated all documentation and package metadata with correct contact information
+- Fixed repository URLs and documentation links
 
 ## [0.2.0] - 2025-11-26
 
