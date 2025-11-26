@@ -7,17 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-11-26
+
 ### Added
 - Username/password authentication support in SipNavClient constructor
 - Automatic bearer token retrieval via `/api/login` endpoint
 - MkDocs Material documentation site with awesome-pages plugin
 - Comprehensive documentation structure (user guides, API reference, examples)
-- GitHub repository integration
-- Enhanced .gitignore for Python and VS Code
+- GitHub repository integration (werebear73/sipnav-client)
+- Enhanced .gitignore for Python and VS Code environments
+- GitHub Actions workflow for documentation sync
+- Building documentation guide
 
 ### Changed
-- Updated all documentation to show both authentication methods
+- Updated all documentation to show both authentication methods (token and username/password)
 - Made `api_key` parameter optional when username/password provided
+- Improved README with multiple authentication examples
+- Enhanced quickstart guide with three authentication methods
+- Updated basic_usage.py example with environment variable usage
+
+### Documentation
+- Created comprehensive authentication guide
+- Added installation instructions
+- Set up API reference structure
+- Added examples directory with basic usage
+- Configured mkdocs.yml with Material theme and awesome-pages plugin
 
 ## [0.1.0] - 2025-11-25
 
