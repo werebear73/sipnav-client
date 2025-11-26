@@ -16,4 +16,5 @@ If you need help:
 1. Check the relevant section in this guide
 2. Review the [API Reference](../api-reference/index.md)
 3. Look at the [Examples](../examples/index.md)
-4. Contact support: krice@sipnavigator.com
+4. Open an issue: [GitHub Issues](https://github.com/werebear73/sipnav-client/issues)
+5. Contact maintainer: Sam Ware (samuel@waretech.services)

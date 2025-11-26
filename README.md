@@ -290,12 +290,19 @@ Full API documentation is available at:
 ## Support
 
 For issues and questions:
-- Email: krice@sipnavigator.com
-- API Documentation: https://api.bluedragonnetwork.com/api/documentation
+- **Maintainer**: Sam Ware (samuel@waretech.services)
+- **Organization**: [Waretech Services](https://waretech.services)
+- **GitHub Issues**: [https://github.com/werebear73/sipnav-client/issues](https://github.com/werebear73/sipnav-client/issues)
+- **API Documentation**: https://api.bluedragonnetwork.com/api/documentation
 
 ## Versioning
 
 This project uses [Semantic Versioning](https://semver.org/) (SemVer). Versions are automatically managed using `setuptools_scm` based on git tags.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0. See the
+`LICENSE` file in the repository for the full license text.
 
 **Current version:**
 ```bash

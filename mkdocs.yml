@@ -1,13 +1,13 @@
 site_name: SIPNAV Python Client
 site_description: Python client library for the SIPNAV REST API
-site_author: SIPNAV Team
-site_url: https://yourusername.github.io/sipnav-client/
+site_author: Sam Ware - Waretech Services
+site_url: https://werebear73.github.io/sipnav-client/
 
 repo_name: sipnav-client
-repo_url: https://github.com/yourusername/sipnav-client
-edit_uri: edit/main/docs/
+repo_url: https://github.com/werebear73/sipnav-client
+edit_uri: edit/master/docs/
 
-copyright: Copyright &copy; 2025 SIPNAV
+copyright: Copyright &copy; 2025 Sam Ware - Waretech Services
 
 theme:
   name: material
@@ -108,9 +108,11 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/yourusername/sipnav-client
+      link: https://github.com/werebear73/sipnav-client
+    - icon: fontawesome/solid/globe
+      link: https://waretech.services
     - icon: fontawesome/solid/envelope
-      link: mailto:krice@sipnavigator.com
+      link: mailto:samuel@waretech.services
   version:
     provider: mike
 

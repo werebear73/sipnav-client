@@ -56,8 +56,12 @@ class SipNavClient:
         # Authenticate if username and password provided
         if username and password:
             self.api_key = self._login(username, password)
+            self.username = username
+            self.password = "***********"
         elif api_key:
             self.api_key = api_key
+            self.username = None
+            self.password = None
         else:
             raise ValueError("Either api_key or both username and password must be provided")
         
@@ -206,18 +210,49 @@ class SipNavClient:
             # Handle other errors
             if not response.ok:
                 error_msg = f"API request failed with status {response.status_code}"
+                error_details = []
+                
                 try:
                     error_data = response.json()
-                    error_msg = error_data.get("message", error_msg)
+                    # Extract message from response
+                    api_message = error_data.get("message", "")
+                    
+                    # If there's error data, include it
+                    if "errors" in error_data:
+                        error_details.append(f"Errors: {error_data['errors']}")
+                    if "data" in error_data:
+                        error_details.append(f"Data: {error_data['data']}")
+                    
+                    # Build detailed error message
+                    if api_message:
+                        error_msg = f"{api_message}"
+                    if error_details:
+                        error_msg += f" | Details: {', '.join(error_details)}"
+                    
+                    # Add context about the request
+                    error_msg += f" | Request: {method} {endpoint}"
+                    
                 except ValueError:
+                    # If response is not JSON, use text
                     error_msg = response.text or error_msg
-                raise APIError(error_msg, status_code=response.status_code)
+                    error_msg += f" | Request: {method} {endpoint}"
+                
+                raise APIError(
+                    error_msg, 
+                    status_code=response.status_code,
+                    request_method=method,
+                    request_url=url
+                )
             
             # Return JSON response
             return response.json() if response.content else {}
             
+        except requests.exceptions.Timeout as e:
+            raise SipNavException(f"Request timeout after {self.timeout}s | Request: {method} {endpoint}") from e
+        except requests.exceptions.ConnectionError as e:
+            raise SipNavException(f"Connection failed to {self.base_url} | Request: {method} {endpoint}") from e
         except requests.exceptions.RequestException as e:
-            raise SipNavException(f"Request failed: {str(e)}") from e
+            raise SipNavException(f"Request failed: {str(e)} | Request: {method} {endpoint}") from e
 
     def get(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Make a GET request to the API."""
