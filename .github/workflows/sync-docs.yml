@@ -16,7 +16,7 @@ jobs:
       - name: Checkout the Waretech Docs repository
         uses: actions/checkout@v4
         with:
-          repository: werebear73/sipnav-client
+          repository: werebear73/waretech-docs
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           path: waretech-docs
           ref: main
