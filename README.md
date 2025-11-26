@@ -299,6 +299,11 @@ For issues and questions:
 
 This project uses [Semantic Versioning](https://semver.org/) (SemVer). Versions are automatically managed using `setuptools_scm` based on git tags.
 
+## License
+
+This project is licensed under the GNU General Public License v3.0. See the
+`LICENSE` file in the repository for the full license text.
+
 **Current version:**
 ```bash
 python -m setuptools_scm

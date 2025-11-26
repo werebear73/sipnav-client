@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Repository license changed to GNU General Public License v3.0 (GPLv3) - 2025-11-26
+
 ## [0.3.0] - 2025-11-26
 
 ### Fixed
