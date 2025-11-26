@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-11-26
+
+### Fixed
+- **Issue #1**: Improved error handling to show actual API error messages instead of generic errors
+- Error messages now include request context (HTTP method, endpoint, URL)
+- Better distinction between connection errors, timeouts, and API errors
+
+### Added
+- Enhanced `APIError` exception with `request_method` and `request_url` attributes
+- Detailed error message formatting with API error details
+- Comprehensive error handling documentation
+- Test script for error handling scenarios
+
+### Changed
+- Error messages now show full context: `[API Message] | Details: [Info] | Request: [METHOD] [ENDPOINT]`
+- Separated timeout errors and connection errors for better debugging
+- Improved `APIError.__str__()` method for better error representation
+
 ## [0.2.0] - 2025-11-26
 
 ### Added
