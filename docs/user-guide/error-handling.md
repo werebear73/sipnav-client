@@ -73,7 +73,7 @@ The client provides detailed error messages with context:
 
 **Example:**
 ```
-Account not found | Details: Errors: ID does not exist | Request: GET /api/accounts/99999
+Account not found | Details: Errors: ID does not exist | Request: GET /api/accounts/99999 | Status: 404  
 ```
 
 ## Handling Specific Error Types
