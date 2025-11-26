@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - master
 
 jobs:
   sync-docs:
@@ -15,7 +16,7 @@ jobs:
       - name: Checkout the Waretech Docs repository
         uses: actions/checkout@v4
         with:
-          repository: werebear73/waretech-docs
+          repository: werebear73/sipnav-client
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           path: waretech-docs
           ref: main
@@ -27,24 +28,24 @@ jobs:
 
       - name: Sync docs folder
         run: |
-          mkdir -p waretech-docs/docs/customers/blue_dragon_network/international/software/testbed_scripts
-          rsync -av --delete docs/ waretech-docs/docs/customers/blue_dragon_network/international/software/testbed_scripts/
+          mkdir -p waretech-docs/docs/public_software/sipnav-client
+          rsync -av --delete docs/ waretech-docs/docs/public_software/sipnav-client
 
       - name: Commit changes
         working-directory: waretech-docs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/customers/blue_dragon_network/international/software/testbed_scripts
-          git commit -m "Sync testbed docs" || echo "No changes to commit"
+          git add docs/public_software/sipnav-client
+          git commit -m "Sync sipnav-client docs" || echo "No changes to commit"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           path: waretech-docs
-          commit-message: "Update INTL Testbed docs"
-          title: "Sync INTL Testbed docs"
-          body: "This PR contains the latest changes from the INTL Testbed repository."
-          branch: "sync/testbed-docs"
+          commit-message: "Update sipnav-client docs"
+          title: "Sync sipnav-client docs"
+          body: "This PR contains the latest changes from the sipnav-client repository."
+          branch: "sync/sipnav-client-docs"
           base: "main"
