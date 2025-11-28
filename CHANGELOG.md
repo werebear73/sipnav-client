@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Terminal User Interface (TUI) with interactive menu system after login
+- Carriers/Vendors sub-menu with "List Switch Carriers" action
+- `sipnav-tui` console entry point for running the TUI
+- `rich` library dependency for enhanced terminal output
+- GitHub Actions CI workflow for test and build (`test-build.yml`)
+- Support for `SIPNAV_CLIENT_REF` repository variable to control checkout ref in CI
+- Multi-version Python testing (3.8 - 3.13) in CI pipeline
+
 ### Changed
 - Repository license changed to GNU General Public License v3.0 (GPLv3) - 2025-11-26
 

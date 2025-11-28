@@ -39,7 +39,13 @@ setup(
     install_requires=[
         "requests>=2.28.0",
         "urllib3>=1.26.0",
+        "rich>=13.0.0",
     ],
+    entry_points={
+        "console_scripts": [
+            "sipnav-tui=sipnav.tui.app:run_tui",
+        ],
+    },
     extras_require={
         "dev": [
             "pytest>=7.0.0",
