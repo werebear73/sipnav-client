@@ -3,4 +3,5 @@ nav:
   - index.md
   - quickstart.md
   - authentication.md
+  - tui.md
   - error-handling.md

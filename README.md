@@ -100,6 +100,29 @@ The client provides organized resource classes for different API endpoints:
 - ✅ **Type hints** for better IDE support and code completion
 - ✅ **Context manager support** for automatic resource cleanup
 - ✅ **Detailed logging** and debugging support
+- ✅ **Terminal User Interface (TUI)** for interactive API exploration
+
+## Terminal User Interface (TUI)
+
+The package includes an interactive TUI for exploring the SIPNAV API from the command line.
+
+### Running the TUI
+
+```bash
+# Using the console script
+sipnav-tui
+
+# Or run as a module
+python -m sipnav.tui.app
+```
+
+### TUI Features
+
+- **Login prompt** with support for environment variables (`SIPNAV_USERNAME`, `SIPNAV_PASSWORD`, `SIPNAV_API_KEY`)
+- **Main menu** with keyboard navigation and hotkeys
+- **Carriers/Vendors sub-menu**:
+  - List Switch Carriers — view all carriers in a formatted table
+- **Rich terminal output** with colors and tables
 
 ## API Coverage
 
