@@ -26,6 +26,7 @@ This document outlines the planned features and improvements for the SIPNAV Pyth
 - [ ] Request/response logging configuration
 - [ ] Debug mode with verbose output
 - [ ] Webhook support for event notifications
+- [ ] Create a TUI post-login menu to display available functions and features (navigation, quick actions, help) — [Issue #3](https://github.com/werebear73/sipnav-client/issues/3)
 
 ## Version 0.4.0 (Q2 2026)
 
