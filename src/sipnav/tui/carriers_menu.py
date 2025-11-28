@@ -23,15 +23,51 @@ def list_switch_carriers(client: "SipNavClient", console: Console) -> None:
 
         try:
             response = client.carriers.list(per_page=per_page, page=current_page)
-            data = response.get("data", {})
-            carriers = data.get("data", [])
             
-            # Extract pagination info
-            total = data.get("total", 0)
-            last_page = data.get("last_page", 1)
-            current = data.get("current_page", current_page)
-            from_item = data.get("from", 0)
-            to_item = data.get("to", 0)
+            # Handle different API response structures
+            # Could be: {"data": {"data": [...], "total": N, ...}} 
+            # Or: {"data": [...]}
+            # Or: [...]
+            if isinstance(response, list):
+                # Direct list response
+                carriers = response
+                total = len(carriers)
+                last_page = 1
+                current = 1
+                from_item = 1 if carriers else 0
+                to_item = len(carriers)
+            elif isinstance(response, dict):
+                data = response.get("data", response)
+                if isinstance(data, list):
+                    # {"data": [...]} format
+                    carriers = data
+                    total = len(carriers)
+                    last_page = 1
+                    current = 1
+                    from_item = 1 if carriers else 0
+                    to_item = len(carriers)
+                elif isinstance(data, dict):
+                    # {"data": {"data": [...], "total": N, ...}} format (Laravel pagination)
+                    carriers = data.get("data", [])
+                    total = data.get("total", len(carriers))
+                    last_page = data.get("last_page", 1)
+                    current = data.get("current_page", current_page)
+                    from_item = data.get("from", 1)
+                    to_item = data.get("to", len(carriers))
+                else:
+                    carriers = []
+                    total = 0
+                    last_page = 1
+                    current = 1
+                    from_item = 0
+                    to_item = 0
+            else:
+                carriers = []
+                total = 0
+                last_page = 1
+                current = 1
+                from_item = 0
+                to_item = 0
 
             if not carriers:
                 console.print("[yellow]No carriers found.[/yellow]")
