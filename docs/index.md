@@ -1,6 +1,6 @@
 # Welcome to SIPNAV Python Client
 
-A comprehensive Python client library for interacting with the SIPNAV (Blue Dragon Network) REST API.
+A Python client library for the SIPNAV (Blue Dragon Network) REST API.
 
 ## Overview
 
@@ -8,119 +8,80 @@ The SIPNAV Python Client provides an easy-to-use interface for managing telecomm
 
 ## Key Features
 
-- **Resource-based API** - Organized endpoints into logical resource classes
-- **Automatic Authentication** - Bearer token authentication with platform support
-- **Comprehensive Coverage** - All major API endpoints implemented
-- **Error Handling** - Custom exceptions for different error types
-- **Type Hints** - Full type annotations for better IDE support
-- **Retry Logic** - Automatic retries with exponential backoff
-- **Context Manager** - Automatic resource cleanup
+- **Resource-based API** — Organized endpoints into logical resource classes
+- **Multiple Auth Methods** — Username/password or Bearer token authentication
+- **Terminal UI** — Interactive TUI for exploring the API
+- **Comprehensive Coverage** — All major API endpoints implemented
+- **Error Handling** — Custom exceptions with detailed error messages
+- **Type Hints** — Full type annotations for IDE support
+- **Retry Logic** — Automatic retries with exponential backoff
 
 ## Quick Start
 
-### Installation
-
-```bash
-pip install sipnav-client
-```
-
-Or install from source:
-
-```bash
-git clone https://github.com/yourusername/sipnav-client.git
-cd sipnav-client
-pip install -e .
-```
-
-### Basic Example
-
 ```python
 from sipnav import SipNavClient
 
-# Method 1: Using bearer token
-client = SipNavClient(
-    api_key="your_bearer_token",
-    platform_id=1  # Optional
-)
-
-# Method 2: Using username and password
 client = SipNavClient(
     username="your_username",
-    password="your_password",
-    platform_id=1  # Optional
+    password="your_password"
 )
 
-# List accounts
-accounts = client.accounts.list(per_page=10)
-print(f"Total accounts: {accounts['data']['total']}")
+# List carriers
+carriers = client.carriers.list(per_page=10)
 
-# Get specific account
-account = client.accounts.get(account_id=12)
-print(account['data']['account_name'])
-
-# Search CDR records
-cdr_results = client.cdr.search(
+# Search CDR
+cdr = client.cdr.search(
     start_date="2025-01-01 00:00:00",
-    end_time="2025-01-31 23:59:59",
-    account_id="12"
+    end_time="2025-01-31 23:59:59"
 )
 ```
 
-## Getting an API Token
+## Documentation
 
-You can authenticate in two ways:
+### Getting Started
 
-### Method 1: Direct Authentication (Recommended)
+| Guide | Description |
+|-------|-------------|
+| [Quick Start](user-guide/quickstart.md) | Installation and first steps |
+| [Authentication](user-guide/authentication.md) | Auth methods and token handling |
 
-The simplest way is to pass your credentials directly:
+### Using the Library
 
-```python
-from sipnav import SipNavClient
+| Guide | Description |
+|-------|-------------|
+| [API Coverage](user-guide/api-coverage.md) | Detailed examples for all resources |
+| [Error Handling](user-guide/error-handling.md) | Exception types and handling patterns |
+| [TUI Guide](user-guide/tui.md) | Terminal User Interface usage |
 
-# Client automatically obtains and uses the bearer token
-client = SipNavClient(
-    username="your_username",
-    password="your_password"
-)
+### Reference
+
+| Section | Description |
+|---------|-------------|
+| [API Reference](api-reference/index.md) | Full API documentation |
+| [Examples](examples/index.md) | Code examples and recipes |
+| [Roadmap](roadmap.md) | Planned features and improvements |
+
+## Terminal UI
+
+Run the interactive TUI:
+
+```bash
+sipnav-tui
 ```
 
-### Method 2: Manual Token Retrieval
+Or as a module:
 
-Alternatively, you can manually retrieve the token:
-
-```python
-from sipnav import SipNavClient
-
-# Create client with temporary credentials
-temp_client = SipNavClient(api_key="temp")
-
-# Login to get token
-response = temp_client.auth.login(
-    username="your_username",
-    password="your_password"
-)
-
-# Extract token
-token = response["data"]["token"]
-
-# Use token for subsequent requests
-client = SipNavClient(api_key=token)
+```bash
+python -m sipnav.tui.app
 ```
-
-## Next Steps
-
-- [Installation Guide](installation.md) - Detailed installation instructions
-- [User Guide](user-guide/index.md) - Complete guide to using the library
-- [API Reference](api-reference/index.md) - Full API documentation
-- [Examples](examples/index.md) - Code examples and use cases
 
 ## Support
 
 - **Maintainer**: Sam Ware (samuel@waretech.services)
 - **Organization**: [Waretech Services](https://waretech.services)
-- **GitHub Issues**: [https://github.com/werebear73/sipnav-client/issues](https://github.com/werebear73/sipnav-client/issues)
-- **API Documentation**: [https://api.bluedragonnetwork.com/api/documentation](https://api.bluedragonnetwork.com/api/documentation)
+- **GitHub Issues**: [Report an issue](https://github.com/werebear73/sipnav-client/issues)
+- **API Documentation**: [SIPNAV API Docs](https://api.bluedragonnetwork.com/api/documentation)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/werebear73/sipnav-client/blob/master/LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 — see the [LICENSE](https://github.com/werebear73/sipnav-client/blob/master/LICENSE) file for details.

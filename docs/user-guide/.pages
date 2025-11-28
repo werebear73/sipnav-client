@@ -4,4 +4,5 @@ nav:
   - quickstart.md
   - authentication.md
   - tui.md
+  - api-coverage.md
   - error-handling.md
