@@ -14,6 +14,7 @@ class CarriersResource(BaseResource):
         company_id: Optional[int] = None,
         platform_filter: Optional[List[int]] = None,
         per_page: int = 10,
+        page: int = 1,
     ) -> Dict[str, Any]:
         """Retrieve paginated list of carriers.
         
@@ -23,11 +24,12 @@ class CarriersResource(BaseResource):
             company_id: Optional company ID filter
             platform_filter: Optional list of platform IDs to filter by
             per_page: Number of carriers per page (default 10)
+            page: Page number to retrieve (default 1)
             
         Returns:
             Paginated list of carriers with detailed data
         """
-        params: Dict[str, Any] = {"external": external, "per_page": per_page}
+        params: Dict[str, Any] = {"external": external, "per_page": per_page, "page": page}
         if platform_id:
             params["platform_id"] = platform_id
         if company_id:
