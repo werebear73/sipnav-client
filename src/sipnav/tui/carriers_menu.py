@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
+from rich.prompt import Prompt
 
 from .menu import Menu, MenuItem
 
@@ -13,35 +14,86 @@ if TYPE_CHECKING:
 
 
 def list_switch_carriers(client: "SipNavClient", console: Console) -> None:
-    """List all switch carriers from the API."""
-    console.print("\n[bold cyan]Fetching carriers...[/bold cyan]\n")
+    """List switch carriers from the API with pagination support."""
+    current_page = 1
+    per_page = 15  # Items per page for readable display
 
-    try:
-        response = client.carriers.list(per_page=100)
-        carriers = response.get("data", {}).get("data", [])
+    while True:
+        console.print(f"\n[bold cyan]Fetching carriers (page {current_page})...[/bold cyan]\n")
 
-        if not carriers:
-            console.print("[yellow]No carriers found.[/yellow]")
+        try:
+            response = client.carriers.list(per_page=per_page, page=current_page)
+            data = response.get("data", {})
+            carriers = data.get("data", [])
+            
+            # Extract pagination info
+            total = data.get("total", 0)
+            last_page = data.get("last_page", 1)
+            current = data.get("current_page", current_page)
+            from_item = data.get("from", 0)
+            to_item = data.get("to", 0)
+
+            if not carriers:
+                console.print("[yellow]No carriers found.[/yellow]")
+                return
+
+            # Build table
+            table = Table(
+                title=f"Switch Carriers (Page {current}/{last_page})",
+                show_header=True,
+                header_style="bold magenta"
+            )
+            table.add_column("ID", style="cyan", justify="right")
+            table.add_column("Name", style="green")
+            table.add_column("Status", style="yellow")
+            table.add_column("Type", style="blue")
+
+            for carrier in carriers:
+                carrier_id = str(carrier.get("id", "N/A"))
+                name = carrier.get("name", "N/A")
+                status = carrier.get("status", "N/A")
+                carrier_type = carrier.get("type", "N/A")
+                table.add_row(carrier_id, name, str(status), str(carrier_type))
+
+            console.print(table)
+            console.print(
+                f"\n[dim]Showing {from_item}-{to_item} of {total} carrier(s) | "
+                f"Page {current}/{last_page}[/dim]"
+            )
+
+            # Pagination navigation
+            nav_options = []
+            if current > 1:
+                nav_options.append("[P] Previous")
+            if current < last_page:
+                nav_options.append("[N] Next")
+            nav_options.append("[G] Go to page")
+            nav_options.append("[Q] Back to menu")
+
+            console.print(f"\n[bold]{' | '.join(nav_options)}[/bold]")
+            choice = Prompt.ask("[bold green]Select[/bold green]").strip().lower()
+
+            if choice == "n" and current < last_page:
+                current_page += 1
+            elif choice == "p" and current > 1:
+                current_page -= 1
+            elif choice == "g":
+                try:
+                    page_num = int(Prompt.ask(f"[bold]Enter page number (1-{last_page})[/bold]"))
+                    if 1 <= page_num <= last_page:
+                        current_page = page_num
+                    else:
+                        console.print(f"[red]Invalid page. Enter 1-{last_page}.[/red]")
+                except ValueError:
+                    console.print("[red]Invalid input. Enter a number.[/red]")
+            elif choice == "q" or choice == "":
+                return
+            else:
+                console.print("[red]Invalid option.[/red]")
+
+        except Exception as e:
+            console.print(f"[bold red]Error fetching carriers:[/bold red] {e}")
             return
-
-        table = Table(title="Switch Carriers", show_header=True, header_style="bold magenta")
-        table.add_column("ID", style="cyan", justify="right")
-        table.add_column("Name", style="green")
-        table.add_column("Status", style="yellow")
-        table.add_column("Type", style="blue")
-
-        for carrier in carriers:
-            carrier_id = str(carrier.get("id", "N/A"))
-            name = carrier.get("name", "N/A")
-            status = carrier.get("status", "N/A")
-            carrier_type = carrier.get("type", "N/A")
-            table.add_row(carrier_id, name, str(status), str(carrier_type))
-
-        console.print(table)
-        console.print(f"\n[dim]Total: {len(carriers)} carrier(s)[/dim]")
-
-    except Exception as e:
-        console.print(f"[bold red]Error fetching carriers:[/bold red] {e}")
 
 
 def create_carriers_menu(client: "SipNavClient", console: Console) -> Menu:
